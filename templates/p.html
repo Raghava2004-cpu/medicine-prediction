@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Prediction - Medicine Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #40d7d7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ebc6c6;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e0211d;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e7f7e6;
+            color: #2c662d;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Health Prediction</h1>
+        <form id="predictionForm">
+            <!-- Input fields -->
+            <div class="form-group">
+                <label for="temperature">Temperature (°C):</label>
+                <input type="number" id="temperature" required>
+            </div>
+            <div class="form-group">
+                <label for="feverSeverity">Fever Severity:</label>
+                <select id="feverSeverity" required>
+                    <option value="normal">Normal</option>
+                    <option value="mildfever">Mild Fever</option>
+                    <option value="highfever">High Fever</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bmi">BMI:</label>
+                <input type="number" step="0.1" id="bmi" required>
+            </div>
+            <div class="form-group">
+                <label for="headache">Headache:</label>
+                <select id="headache" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bodyAche">Body Ache:</label>
+                <select id="bodyAche" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fatigue">Fatigue:</label>
+                <select id="fatigue" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="chronicConditions">Chronic Conditions:</label>
+                <select id="chronicConditions" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="allergies">Allergies:</label>
+                <select id="allergies" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="smoking">Smoking History:</label>
+                <select id="smoking" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="alcohol">Alcohol Consumption:</label>
+                <select id="alcohol" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="humidity">Humidity:</label>
+                <input type="number" id="humidity" required>
+            </div>
+            <div class="form-group">
+                <label for="aqi">AQI:</label>
+                <input type="number" id="aqi" required>
+            </div>
+            <div class="form-group">
+                <label for="physicalActivity">Physical Activity:</label>
+                <select id="physicalActivity" required>
+                    <option value="moderate">Moderate</option>
+                    <option value="active">Active</option>
+                    <option value="sedentary">Sedentary</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="diet">Diet Type:</label>
+                <select id="diet" required>
+                    <option value="vegan">Vegan</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="non-vegetarian">Non-Vegetarian</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="heartRate">Heart Rate:</label>
+                <input type="number" id="heartRate" required>
+            </div>
+            <div class="form-group">
+                <label for="bp">Blood Pressure:</label>
+                <select id="bp" required>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit">Get Recommended Medicine</button>
+        </form>
+
+        <!-- Output -->
+        <div id="output" class="output" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const inputData = {
+                temperature: document.getElementById('temperature').value,
+                feverSeverity: document.getElementById('feverSeverity').value,
+                age: document.getElementById('age').value,
+                gender: document.getElementById('gender').value,
+                bmi: document.getElementById('bmi').value,
+                headache: document.getElementById('headache').value,
+                bodyAche: document.getElementById('bodyAche').value,
+                fatigue: document.getElementById('fatigue').value,
+                chronicConditions: document.getElementById('chronicConditions').value,
+                allergies: document.getElementById('allergies').value,
+                smoking: document.getElementById('smoking').value,
+                alcohol: document.getElementById('alcohol').value,
+                humidity: document.getElementById('humidity').value,
+                aqi: document.getElementById('aqi').value,
+                physicalActivity: document.getElementById('physicalActivity').value,
+                diet: document.getElementById('diet').value,
+                heartRate: document.getElementById('heartRate').value,
+                bp: document.getElementById('bp').value,
+            };
+
+            // Send data to backend for prediction
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(inputData),
+            });
+
+            const result = await response.json();
+            const outputDiv = document.getElementById('output');
+            outputDiv.style.display = 'block';
+            outputDiv.textContent = `Recommended Medicine: ${result.medicine}`;
+        });
+    </script>
+</body>
+</html>
